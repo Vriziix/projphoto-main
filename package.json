@@ -1,0 +1,23 @@
+{
+  "name": "projphoto",
+  "version": "1.0.0",
+  "description": "projphoto bts",
+  "main": "index.js",
+  "scripts": {
+    "start": "php -S localhost:8000 -t assets/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "projphoto"
+  },
+  "author": "Axel",
+  "license": "ISC",
+  "devDependencies": {
+    "php-built-in-server": "^0.1.4",
+    "php-server": "^1.0.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5"
+  }
+}
