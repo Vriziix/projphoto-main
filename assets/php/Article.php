@@ -7,7 +7,7 @@ class Article {
     }
 
     public function getArticlesByType($typeId) {
-        $stmt = $this->pdo->prepare("SELECT photo, text FROM articles WHERE idtype = ?");
+        $stmt = $this->pdo->prepare("SELECT photo, text FROM article WHERE idtype = ?");
         $stmt->execute([$typeId]);
         return $stmt->fetchAll();
     }
