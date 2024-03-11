@@ -7,7 +7,7 @@ class Database {
     private $charset;
 
     public function __construct() {
-        $config = require 'db_config.php';
+        $config = require 'dbconfig.php';
         $this->host = $config['host'];
         $this->db = $config['db'];
         $this->user = $config['user'];

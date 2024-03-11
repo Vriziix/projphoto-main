@@ -7,7 +7,7 @@
     <title>Reflets Limousins - Accueil</title>
 </head>
 <body class="bg-gray-900 text-gray-200">
-    <!-- ========== HEADER ========== -->
+    <!-- ========== HEADER ========== --> 
     <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full border-b border-gray-700 py-3 sm:py-0">
   <nav class="relative max-w-[85rem] w-full mx-auto px-4 flex items-center justify-center sm:px-6 lg:px-8" aria-label="Global">
     <div class="flex items-center justify-between w-full">

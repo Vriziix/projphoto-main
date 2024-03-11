@@ -1,13 +1,22 @@
 <?php
-require 'config/dbconfig.php';
-require 'classes/Database.php';
-require 'classes/Type.php';
+require 'php/dbconfig.php';
+require 'php/db.php';
+require 'php/Type.php';
+require 'php/Article.php';
 
 $database = new Database();
 $db = $database->connect();
 
 $type = new Type($db);
 $types = $type->getAllTypes();
+
+$article = new Article($db);
+$articles = null;
+
+if (!empty($_GET['type'])) {
+    $selectedType = $_GET['type'];
+    $articles = $article->getArticlesByType($selectedType);
+}
 ?>
 
 <html lang="en">
@@ -41,15 +50,28 @@ $types = $type->getAllTypes();
   </nav>
 </header>
 
-<section class="bg-gray-900">
-
+<section class="mt-8 mx-4">
+    <form action="photos.php" method="get" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div class="flex flex-col sm:flex-row items-center">
+            <label for="type" class="block text-gray-200 text-sm font-medium mb-1 sm:mb-0 sm:mr-2">Choisissez un type d'article:</label>
+            <select name="type" id="type" class="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 text-white">
+                <?php foreach ($types as $type): ?>
+                    <option value="<?php echo $type['idtype']; ?>" <?php if (!empty($_GET['type']) && $_GET['type'] == $type['idtype']) echo 'selected'; ?>>
+                        <?php echo $type['nomtype']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <input type="submit" value="Afficher les articles" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+    </form>
 </section>
+
 
 <footer class="rounded-lg shadow m-4">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap">Reflets Limousins</span>
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0">
